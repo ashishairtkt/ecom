@@ -3,7 +3,7 @@ import { Container, Image, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { FaUser, FaHeart, FaShoppingCart } from "react-icons/fa";
 import { getUserDetails } from "../../utils/utils";
 import { useNavigate } from "react-router-dom";
-
+import Cookies from "js-cookie";
 function Header() {
   const [activeLink, setActiveLink] = useState("home");
   const [userInfo, setUserInfo] = useState(null);
@@ -14,7 +14,7 @@ function Header() {
 
   const handleLogout = () => {
     localStorage.removeItem("user");
-
+    Cookies.remove("auth");
     navigate("/Login", { replace: true });
   };
 

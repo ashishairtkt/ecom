@@ -4,6 +4,7 @@ import Home from "../pages/Home";
 import Loader from "../utils/loader";
 import NotFound from "./Notfound";
 import PrivateRoute from "./PrivateRoutes";
+import { ProductSlider } from "../components/product/ProductSlider";
 
 const Login = lazy(() => import("../auth/login"));
 const Layout = lazy(() => import("../components/layout/layout"));
@@ -23,7 +24,7 @@ function RouterConfig() {
         />
 
         <Route path="/login" element={<Login />} />
-
+        <Route path="/ProductSlider" element={<ProductSlider />} />
         <Route element={<PrivateRoute />}>
           <Route path="/ProductPage" element={<ProductPage />} />
         </Route>

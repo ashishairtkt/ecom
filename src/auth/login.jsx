@@ -1,4 +1,3 @@
-import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import LoginForm from "./loginform";
 import { FcGoogle } from "react-icons/fc";
@@ -71,7 +70,6 @@ function Login() {
                 <p>or login with</p>
               </div>
 
-              {/* <FcGoogle /> */}
               <GoogleLoginPage />
             </div>
           </div>

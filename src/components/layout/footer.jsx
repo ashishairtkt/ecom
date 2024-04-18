@@ -1,6 +1,4 @@
-import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
-// Import custom CSS for footer styling
 
 export default function Footer() {
   return (

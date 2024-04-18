@@ -3,18 +3,45 @@ import { Formik, Form as FormikForm, Field } from "formik";
 import * as Yup from "yup";
 import { Col, Button, Form } from "react-bootstrap";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import Cookies from "js-cookie";
+
 const validationSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Email is required"),
   password: Yup.string().required("Password is required"),
 });
 
+const testAuthData = {
+  email: "test@gmail.com",
+  password: "test",
+};
+
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleSubmit = (values, { setSubmitting }) => {
+  const handleSubmit = (values) => {
     // Handle form submission here
-    console.log(values);
-    setSubmitting(false);
+
+    const isAuthenticated = authenticateUser(values);
+    console.log(isAuthenticated, "isAuthenticated");
+    if (isAuthenticated) {
+      console.log("User verified");
+      // Redirect or perform further actions for authenticated user
+    } else {
+      console.log("User verify failed");
+      // Handle failed authentication, perhaps show an error message
+    }
+  };
+  const authenticateUser = (values) => {
+    const { email, password } = values; // Destructure email and password from values
+    if (email === testAuthData.email && password === testAuthData.password) {
+      const userData = { email, password }; // Use email and password from values
+      const expirationTime = new Date(Date.now() + 60000);
+      Cookies.set("auth", JSON.stringify(userData), {
+        expires: expirationTime,
+      });
+      return true;
+    }
+    return false;
   };
 
   return (
@@ -24,7 +51,7 @@ const LoginForm = () => {
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
-        {({ isSubmitting, errors, touched }) => (
+        {({ errors, touched }) => (
           <FormikForm>
             <Form.Group as={Col} controlId="email" className="m-3">
               <Field
@@ -72,8 +99,8 @@ const LoginForm = () => {
             </Form.Group>
 
             <Form.Group as={Col} className="m-3">
-              <Button type="submit" disabled={isSubmitting} variant="dark">
-                {isSubmitting ? "Submitting..." : "Submit"}
+              <Button type="submit" variant="dark">
+                Submit
               </Button>
             </Form.Group>
           </FormikForm>

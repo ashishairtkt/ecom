@@ -14,4 +14,8 @@ body {
   line-height: 1.5;
 }
 
+.fp-warning,
+.fp-watermark {
+  display: none !important;
+}
 @import "styles/main.scss";
