@@ -33,9 +33,9 @@ export default function Checkout() {
                     </div>
                   </div>
 
-                  {/* <p>
-                  Remove item <MdDelete />{" "}
-                </p> */}
+                  <p className="remove_item">
+                    <MdDelete /> Remove item{" "}
+                  </p>
                 </div>
 
                 <div className="details_card">
