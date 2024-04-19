@@ -7,6 +7,7 @@ import PrivateRoute from "./PrivateRoutes";
 import { ProductSlider } from "../components/product/ProductSlider";
 import Categories from "../components/categories/categories";
 import CategoriesbyName from "../components/categories/CategoriesbyName";
+import Checkout from "../components/checkout/checkout";
 
 const Login = lazy(() => import("../auth/login"));
 const Layout = lazy(() => import("../components/layout/layout"));
@@ -28,6 +29,7 @@ function RouterConfig() {
         <Route path="/login" element={<Login />} />
         <Route path="/ProductSlider" element={<ProductSlider />} />
         <Route path="/Categories" element={<Categories />} />
+        <Route path="/Checkout" element={<Checkout />} />
         <Route
           path="/Categories/:Category_name"
           element={<CategoriesbyName />}
